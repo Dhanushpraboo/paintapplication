@@ -218,7 +218,8 @@ Publish the website in the given URL.
 ~~~
 
 ## OUTPUT:
-
+![Maths](maths1.png)
+![maths1](maths2.png)
 
 
 ## Result:
