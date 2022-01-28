@@ -42,184 +42,112 @@ Publish the website in the given URL.
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mathematical Calculations</title>
+    <title>Canvas Application</title>
     <style>
-        *{
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+        .maincontainer{
+            text-align: center;
         }
         body{
-            background-color:#DEE692;
-            color:rgb(1, 1, 14);
+            background-color: aqua;
         }
-        .container{
-            width: 1080px;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #DEE692;
-            border:#540688;
-        }
-        .content{
-            display: block;
-            width: 100%;
-            background-color:#E69B90;
-            margin-top: 40px;
-            min-height: 400px;
-        }
-        .text{
-            text-align: center;
-            padding-top: 50px;
-            text-decoration: underline;
-        }
-        .formelement{
-            text-align: center;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            font-size: 25px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-
-        }
-        .content2{
-            display: block;
-            width: 100%;
-            background-color:#72B4E6;
-            margin-top: px;
-            min-height: 400px;
-        }
-        .by{
-            text-align: center;
-            color: black(245, 240, 240);
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        canvas{
+            background-color: white;
         }
     </style>
 
+<script type="text/javascript">
+var shape;
+var color;
+function myClickEvent(e){
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        if(color==1){
+            ctx.strokeStyle='red';
+        }else if(color==2){
+            ctx.strokeStyle='yellow';
+        }else if(color==3){
+            ctx.strokeStyle='blue';
+        }
+        if(shape == 0){
+            ctx.arc(e.offsetX,e.offsetY, 45, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+        }else if(shape == 1){
+
+            ctx.moveTo(75, 50);
+            ctx.lineTo(100, 75);
+            ctx.lineTo(100, 25);
+            ctx.closePath();
+            ctx.stroke();
+        }else if(shape==2){
+            ctx.rect(e.offsetX,e.offsetY, 150, 100);
+            ctx.stroke();
+
+
+        }else if(shape==3){
+            ctx.rect(e.offsetX, e.offsetY, 50, 50);
+            ctx.stroke();
+        }
+    }
+
+        function circleClicked(){
+            shape=0;
+        }
+        function triangleClicked(){
+            shape=1;
+        }
+        function rectangleClicked(){
+            shape=2;
+        }
+        function squareClicked(){
+            shape=3;
+        }
+        function redClicked(){
+            color=1;
+        }
+        function blueClicked(){
+            color=3;
+        }
+        function yellowClicked(){
+            color=2;
+        }
+
+</script>
 </head>
-
 <body>
-    <div class="container">
-        <div class="content">
-            <h1 class="text"><B>Area of TRIANGLE</B></h1>
-            <form>
-                <div class="formelement"><label for="aEdit">Base:</label>
-                    <input type="number" id="aEdit" value="0"/>
-                    <lable for="aedit">Meters</lable>
-                </div><br>
-                
-                <div class="formelement">
-                    <label for="bEdit">Height:</label>
-                    <input type="number" id="bEdit" value="0"/>
-                    <lable for="aedit">Meters</lable>
-                </div>
-                <div class="formelement">
-                    <input type="button" value="Calculate" id="AddButton"/>
-                </div>
-                
-                <div class="formelement">
-                    <label for="cEdit">Area:</label>
-                    <input type="text" id="cEdit" value="0" readonly />
-                    <lable for="aedit">Meter<sup>2</sup></lable>
-                </div><br>
-                <div class=formelement>
-                   
-                </div>
-            </form>
-
-        </div>
-        <div class="content2">
-            <h1 class="text">Area of RECTANGLE</h1>
-            <form>
-                <div class="formelement"><label for="hEdit">Height:</label>
-                    <input type="number" id="hEdit" value="0"/>
-                    <lable for="aedit">Meters</lable>
-                </div><br>
-                
-                <div class="formelement">
-                    <label for="rEdit">Width:</label>
-                    <input type="number" id="rEdit" value="0"/>
-                    <lable for="aedit">Meters</lable>
-                </div>
-                <div class="formelement">
-                    <input type="button" value="Calculate" id="AddButton1"/>
-                </div>
-                
-                <div class="formelement">
-                    <label for="vEdit">AREA:</label>
-                    <input type="number" id="vEdit" value="0" readonly />
-                    <lable for="aedit">Meter<sup>2</sup></lable>
-                </div><br>
-                <div class="formelement">
-                 
-                    </div><br>
-                   
-            </form>
-
-        </div>
-    </div>
-    <script>
-        function validate(){
-            var user1=document.getElementById("aedit").value;
-            var user2=document.getElementById("bedit").value;
-            var user3=document.getElementById("redit").value;
-            var user4=document.getElementById("hedit").value;
-            var re = /^[0-9]+$/;
-            if (re.test(user1)){
-                return true;
-      }
-            else if (re.test(user2)){
-                return true;
-         }
-         else if (re.test(user3)){
-                return true;
-         }
-         else if (re.test(user4)){
-                return true;
-         }
-            else {
-                alert('Please input numeric characters only');
-                return false;
-        }
-       
-        }
-    </script>
-    <script type="text/javascript">
-        var button,button1;
-        button = document.querySelector("#AddButton");
+    <div class="maincontainer">
+        <h1><u>Canvas Drawing Application</u></h1>
+    <canvas id="myCanvas" width="800" height="400" style="border:1px solid #000000"></canvas>
+    <div>
+        <input type="button" id="circle" value="Circle">
+        <input type="button" id="line" value="Triangle">
+        <input type="button" id="rectangle" value="Rectangle">
+        <input type="button" id="square" value="Square">
         
-        button.addEventListener("click",function(){
-            var aText,bText,cText;
-            var aVal,bVal,cVal;
-            aText=document.querySelector("#aEdit");
-            bText=document.querySelector("#bEdit");
-            cText=document.querySelector("#cEdit");
-
-            aVal = parseInt(aText.value);
-            bVal = parseInt(bText.value);
-            cVal = (aVal*bVal)/2;
-            cText.value = ""+cVal;
-        });
-        button1 = document.querySelector("#AddButton1");
-        button1.addEventListener("click",function(){
-            var aText,bText,cText;
-            var aVal,bVal,cVal;
-            hText=document.querySelector("#hEdit");
-            rText=document.querySelector("#rEdit");
-            vText=document.querySelector("#vEdit");
-
-            hVal = parseInt(hText.value);
-            rVal = parseInt(rText.value);
-            vVal = hVal*rVal;
-            vText.value = ""+vVal;
-        });
-
-    </script>
-    <footer> <p class="by"><B>Developed by : S.Dhanush Praboo </B></p></footer>
+    </div>
+    <div>
+        <input type="button" id="red" value="Red">
+        <input type="button" id="blue" value="Blue">
+        <input type="button" id="yellow" value="Yellow">
+    </div>
+        <script type ="text/javascript">
+            var c = document.getElementById("myCanvas");
+            c.addEventListener("click", myClickEvent);
+            document.getElementById("circle").addEventListener("click", circleClicked);
+            document.getElementById("line").addEventListener("click",  triangleClicked);
+            document.getElementById("rectangle").addEventListener("click",rectangleClicked);
+            document.getElementById("square").addEventListener("click",squareClicked);
+            document.getElementById("red").addEventListener("click",redClicked);
+            document.getElementById("blue").addEventListener("click",blueClicked);
+            document.getElementById("yellow").addEventListener("click",yellowClicked);
+           
+        </script>
 </body>
 </html>
 ~~~
 
 ## OUTPUT:
-![Maths](maths1.png)
-![maths1](maths2.png)
+![paintapplication](paintapplication.png)
 
 
 ## Result:
